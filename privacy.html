@@ -27,7 +27,7 @@
 
   <section id="ja">
     <h1>Peekr VR プライバシーポリシー</h1>
-    <p class="meta">最終更新日: 2026年6月12日<br>提供者: Peekr（個人開発）</p>
+    <p class="meta">最終更新日: 2026年6月13日<br>提供者: Peekr（個人開発）</p>
 
     <p>Peekr VR（以下「本アプリ」）は、お客様のプライバシーを最優先に設計されています。<br>
     本アプリは、利用者の個人データを収集・送信・解析する機能を一切持ちません。</p>
@@ -50,10 +50,12 @@
     <p>これらの情報はアプリ専用の保存領域に置かれます。</p>
 
     <h2>3. ファイルへのアクセスについて</h2>
-    <p>本アプリは、漫画・画像・動画を表示するために端末内のファイルへアクセスします。
-    端末内の漫画アーカイブ（ZIP / RAR / CBZ / CBR / 7z / TAR）を読み込む際は、お客様ご自身に対象フォルダを選んでいただく方式（Androidの「フォルダ選択」）を採用しており、本アプリがアクセスできるのは、お客様が選んだフォルダの中だけです。
-    本アプリは「すべてのファイルへのアクセス」権限は使用しません。</p>
-    <p>本アプリがファイルに対して行うのは「表示のための読み取り」のみで、お客様のファイルを収集・複製・アップロード・送信・改変することはありません。</p>
+    <p>本アプリは、漫画・画像・動画を表示するために端末内のファイルへアクセスします。読み込み方法はファイルの種類によって異なります。</p>
+    <ul>
+      <li><strong>写真・動画</strong>は、Androidの標準的なメディアアクセス権（写真・動画への読み取り許可）を用いて読み込みます。これは他の写真・動画アプリと同じ仕組みで、お客様の許可が必要です。</li>
+      <li><strong>漫画アーカイブ（ZIP / RAR / CBZ / CBR / 7z / TAR）など、メディア以外のファイル</strong>は、お客様ご自身に対象フォルダを選んでいただく方式（Androidの「フォルダ選択」＝Storage Access Framework）で読み込みます。本アプリがアクセスできるのは、お客様が選んだフォルダの中だけです。</li>
+    </ul>
+    <p>本アプリは「すべてのファイルへのアクセス」権限（MANAGE_EXTERNAL_STORAGE）は使用しません。本アプリがファイルに対して行うのは「表示のための読み取り」のみで、お客様のファイルを収集・複製・アップロード・送信・改変することはありません。</p>
 
     <h2>4. ネットワーク通信について</h2>
     <p>本アプリの通信は、お客様ご自身が設定したNAS（SMB）との接続に限られます。本アプリが、開発者やその他の第三者のサーバーと通信することはありません。</p>
@@ -82,7 +84,7 @@
 
   <section id="en" lang="en">
     <h1>Peekr VR Privacy Policy</h1>
-    <p class="meta">Last updated: June 12, 2026<br>Provider: Peekr (independent developer)</p>
+    <p class="meta">Last updated: June 13, 2026<br>Provider: Peekr (independent developer)</p>
 
     <p>Peekr VR ("the App") is designed with your privacy as the top priority.<br>
     The App has no functionality to collect, transmit, or analyze any personal data.</p>
@@ -105,10 +107,12 @@
     <p>This data is kept in the App's private storage area.</p>
 
     <h2>3. File Access</h2>
-    <p>The App accesses files on your device in order to display comics, images, and videos.
-    To read comic archives stored on the device (ZIP / RAR / CBZ / CBR / 7z / TAR), the App uses Android's folder-selection mechanism (Storage Access Framework): you explicitly choose the folder, and the App can read only within the folder you selected.
-    The App does not use the "All Files Access" permission (MANAGE_EXTERNAL_STORAGE).</p>
-    <p>All file access is read-only, for display purposes. The App never collects, copies, uploads, transmits, or modifies your files.</p>
+    <p>The App accesses files on your device in order to display comics, images, and videos. How files are read depends on their type.</p>
+    <ul>
+      <li><strong>Photos and videos</strong> are read using Android's standard media access permissions (read access to images and video). This is the same mechanism used by other photo and video apps, and it requires your permission.</li>
+      <li><strong>Comic archives (ZIP / RAR / CBZ / CBR / 7z / TAR) and other non-media files</strong> are read using Android's folder-selection mechanism (Storage Access Framework): you explicitly choose the folder, and the App can read only within the folder you selected.</li>
+    </ul>
+    <p>The App does not use the "All Files Access" permission (MANAGE_EXTERNAL_STORAGE). All file access is read-only, for display purposes. The App never collects, copies, uploads, transmits, or modifies your files.</p>
 
     <h2>4. Network Communication</h2>
     <p>The App's network communication is limited to connecting to the NAS (SMB) that you yourself have configured. The App never communicates with servers operated by the developer or any third party.</p>
