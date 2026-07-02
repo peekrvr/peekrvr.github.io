@@ -3,59 +3,273 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Peekr VR</title>
-<meta name="description" content="Peekr VR — Meta Quest 3 向け 画像・動画・漫画ビューワー / A media viewer for Meta Quest 3.">
+<title>Peekr VR — ZIPも RARも 7zも、開かないで開く。| VR comic & photo reader for Meta Quest</title>
+<meta name="description" content="Peekr VR — Meta Quest 3 向け 画像・動画・漫画ビューワー。ZIP/CBZ/RAR/7z を解凍せず直読、NAS(SMB)直結、Komga連携、ズーム無制限、データ収集ゼロ。/ A media viewer for Meta Quest 3: read archives without extracting, straight from your NAS or Komga server.">
+<meta property="og:title" content="Peekr VR — VR comic & photo reader for Meta Quest">
+<meta property="og:description" content="ZIP/CBZ/RAR/7z を解凍せず直読。NAS直結・Komga連携・ズーム無制限・データ収集ゼロ。/ Read your archives in VR — no extraction, straight from your NAS.">
+<meta property="og:image" content="https://peekrvr.github.io/assets/trailer_poster.jpg">
+<meta property="og:url" content="https://peekrvr.github.io/">
+<meta name="twitter:card" content="summary_large_image">
 <style>
-  :root { --accent:#9ED6FA; --bg:#0d1b2a; --panel:#13243a; --text:#e8eef4; --muted:#9fb3c8; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); line-height:1.8;
+  :root { --accent:#9ED6FA; --bg:#0d1b2a; --panel:#13243a; --panel2:#182c46; --text:#e8eef4; --muted:#9fb3c8; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--bg); color:var(--text); line-height:1.8;
          font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", Meiryo, sans-serif; }
-  main { max-width:720px; margin:0 auto; padding:64px 24px; }
-  h1 { color:var(--accent); font-size:2.2rem; margin:0 0 8px; letter-spacing:.02em; }
-  .tagline { color:var(--muted); margin:0 0 40px; }
   a { color:var(--accent); }
-  .card { background:var(--panel); border-radius:12px; padding:20px 24px; margin:16px 0; }
-  .card h2 { font-size:1rem; margin:0 0 6px; color:var(--accent); }
-  .card p { margin:0; color:var(--muted); font-size:.95rem; }
-  footer { color:var(--muted); font-size:.85rem; margin-top:48px; }
+  img { max-width:100%; display:block; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 24px; }
+
+  /* 言語切替 */
+  .langbar { display:flex; justify-content:flex-end; gap:8px; padding:14px 0; }
+  .langbar button { background:transparent; border:1px solid #2a4260; color:var(--muted);
+                    padding:4px 14px; border-radius:999px; cursor:pointer; font-size:.85rem; }
+  .langbar button.on { background:var(--accent); border-color:var(--accent); color:#06121f; font-weight:700; }
+  [data-l] { display:none; }
+  html.ja [data-l="ja"] { display:revert; }
+  html.en [data-l="en"] { display:revert; }
+
+  /* ヒーロー */
+  .hero { text-align:center; padding:40px 0 48px; }
+  .hero img.logo { width:150px; margin:0 auto 18px; }
+  .hero h1 { color:var(--accent); font-size:2.6rem; letter-spacing:.03em; margin-bottom:20px; }
+  .catch { font-size:1.7rem; font-weight:700; line-height:1.5; }
+  .subcatch { color:var(--muted); font-size:1.05rem; margin:10px 0 30px; }
+  .cta { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .cta a.store { background:var(--accent); color:#06121f; font-weight:800; text-decoration:none;
+                 padding:14px 30px; border-radius:14px; font-size:1.05rem; }
+  .cta a.store.alt { background:transparent; color:var(--accent); border:2px solid var(--accent); }
+  .price { color:var(--muted); font-size:.9rem; margin-top:14px; }
+  .device { color:var(--muted); font-size:.8rem; }
+
+  section { padding:44px 0; }
+  h2.secTitle { color:var(--accent); font-size:1.5rem; text-align:center; margin-bottom:28px; }
+
+  /* トレーラー */
+  video { width:100%; border-radius:14px; background:#000; }
+
+  /* 特長 */
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px; }
+  .feature { background:var(--panel); border-radius:14px; padding:22px 24px; }
+  .feature .icon { font-size:1.8rem; margin-bottom:8px; }
+  .feature h3 { color:var(--accent); font-size:1.05rem; margin-bottom:8px; }
+  .feature p { color:var(--muted); font-size:.93rem; }
+
+  /* スクショ */
+  .shots { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:14px; }
+  .shots figure { background:var(--panel); border-radius:12px; overflow:hidden; }
+  .shots img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+  .shots figcaption { padding:10px 14px; color:var(--muted); font-size:.85rem; }
+
+  /* What's New */
+  .news { background:var(--panel2); border-left:4px solid var(--accent); border-radius:12px; padding:22px 26px; }
+  .news h3 { color:var(--accent); margin-bottom:8px; font-size:1.05rem; }
+  .news p { color:var(--muted); font-size:.95rem; }
+
+  /* スペック */
+  table.spec { width:100%; border-collapse:collapse; background:var(--panel); border-radius:12px; overflow:hidden; }
+  table.spec th, table.spec td { padding:12px 18px; text-align:left; font-size:.93rem; border-bottom:1px solid #22385a; }
+  table.spec th { color:var(--accent); width:34%; font-weight:600; vertical-align:top; }
+  table.spec td { color:var(--muted); }
+  table.spec tr:last-child th, table.spec tr:last-child td { border-bottom:none; }
+
+  /* 最後のCTA */
+  .lastcta { text-align:center; background:var(--panel2); border-radius:16px; padding:38px 24px; }
+  .lastcta .catch { font-size:1.35rem; margin-bottom:22px; }
+
+  footer { color:var(--muted); font-size:.85rem; padding:36px 0 48px; text-align:center; }
+  footer nav { margin-bottom:12px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
 </style>
 </head>
 <body>
-<main>
-  <h1>Peekr VR</h1>
-  <p class="tagline">Meta Quest 3 向け 画像・動画・漫画ビューワー<br>A media viewer for Meta Quest 3 — images, videos, and comics.</p>
-
-  <div class="card">
-    <h2>新着 / What's New — Komga 連携</h2>
-    <p>自宅のNASに置いた <strong>Komga</strong> サーバーのマンガを、VRでそのまま閲覧できるようになりました。シリーズ検索（日本語入力に対応）、続きから読む（読書進捗をサーバーと同期）、お気に入り・ショートカット登録、シリーズごとの読み方向（右開き／左開き）の自動反映に対応。LAN上の Komga を自動検出し、設定済みなら起動後すぐライブラリへ。UI は6言語対応です。<br><br>
-    Read manga from your self-hosted <strong>Komga</strong> server right inside VR. Series search (with Japanese/IME input), continue reading (progress synced to the server), Favorites &amp; Shortcuts, and each series' reading direction (RTL/LTR) applied automatically. Auto-discovers Komga on your LAN and jumps straight to your library. UI available in 6 languages.</p>
+<div class="wrap">
+  <div class="langbar">
+    <button id="btnJa" onclick="setLang('ja')">日本語</button>
+    <button id="btnEn" onclick="setLang('en')">English</button>
   </div>
 
-  <div class="card">
-    <h2>ストア / Store</h2>
-    <p>Meta Horizon Store にて配信中 / Now live:
-    <a href="https://www.meta.com/ja-jp/experiences/peekr-vr/1157359374130212/">日本語</a> ·
-    <a href="https://www.meta.com/en-us/experiences/peekr-vr/1157359374130212/">English</a></p>
-  </div>
+  <!-- ヒーロー -->
+  <header class="hero">
+    <img class="logo" src="./assets/logo.png" alt="Peekr VR logo">
+    <h1>Peekr VR</h1>
+    <p class="catch" data-l="ja">ZIPも RARも 7zも、<br>開かないで開く。</p>
+    <p class="catch" data-l="en">ZIP, RAR, 7z —<br>open them without opening them.</p>
+    <p class="subcatch" data-l="ja">NASに置いたまま、どこまでも寄れる。<br>Meta Quest 3 向け 画像・動画・漫画ビューワー</p>
+    <p class="subcatch" data-l="en">Leave your library on the NAS — and zoom in as far as you like.<br>A comic, photo &amp; video viewer for Meta Quest 3</p>
+    <div class="cta">
+      <a class="store" data-l="ja" href="https://www.meta.com/ja-jp/experiences/peekr-vr/1157359374130212/">Meta Horizon Store で入手</a>
+      <a class="store" data-l="en" href="https://www.meta.com/en-us/experiences/peekr-vr/1157359374130212/">Get it on the Meta Horizon Store</a>
+    </div>
+    <p class="price" data-l="ja">¥1,980（買い切り・追加課金なし）</p>
+    <p class="price" data-l="en">$14.99 — one-time purchase, no subscriptions</p>
+    <p class="device" data-l="ja">対応機種などの詳細はストアページをご確認ください</p>
+    <p class="device" data-l="en">See the store page for device compatibility details</p>
+  </header>
 
-  <div class="card">
-    <h2>プレス・レビュー / Press &amp; Review</h2>
-    <p>ファクトシート・特長・素材・無料レビューコード / Fact sheet, features, assets &amp; free review codes:
-    <a href="./press.html">Press / Review Kit</a></p>
-  </div>
+  <!-- トレーラー -->
+  <section>
+    <video controls preload="none" poster="./assets/trailer_poster.jpg" src="./assets/trailer.mp4"></video>
+  </section>
 
-  <div class="card">
-    <h2>プライバシーポリシー / Privacy Policy</h2>
-    <p><a href="./privacy.html">日本語 / English</a> — Peekr VR はデータを収集しません。 / Peekr VR collects no data.</p>
-  </div>
+  <!-- 特長 -->
+  <section>
+    <h2 class="secTitle" data-l="ja">特長</h2>
+    <h2 class="secTitle" data-l="en">Features</h2>
+    <div class="grid">
+      <div class="feature">
+        <div class="icon">📦</div>
+        <h3 data-l="ja">圧縮ファイルを、そのまま読む</h3>
+        <h3 data-l="en">Read archives as-is</h3>
+        <p data-l="ja">ZIP / CBZ / RAR / CBR / 7z / TAR を解凍せずに直接オープン。変換もコピーも不要です。</p>
+        <p data-l="en">Opens ZIP / CBZ / RAR / CBR / 7z / TAR directly — no extraction, no conversion, no copying.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🖥️</div>
+        <h3 data-l="ja">NAS（SMB）直結</h3>
+        <h3 data-l="en">Straight from your NAS (SMB)</h3>
+        <p data-l="ja">蔵書はNASに置いたまま。Questへの転送は要りません。ネットワーク越しにそのまま読めます。</p>
+        <p data-l="en">Your library stays on the NAS. Nothing to transfer to the headset — read over the network.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📚</div>
+        <h3 data-l="ja">Komga サーバー連携</h3>
+        <h3 data-l="en">Native Komga integration</h3>
+        <p data-l="ja">シリーズ検索（日本語入力対応）・お気に入り・読書進捗の同期・読み方向（右開き/左開き）の自動反映。</p>
+        <p data-l="en">Series search, favorites, reading-progress sync, and automatic reading direction (RTL/LTR) per series.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔍</div>
+        <h3 data-l="ja">ズーム無制限</h3>
+        <h3 data-l="en">Unlimited zoom</h3>
+        <p data-l="ja">作家の筆づかい、線の入り抜き。心ゆくまで寄って読めます。大画面も原寸も自由自在。</p>
+        <p data-l="en">Get as close as you want — every line, every stroke. From wall-sized to life-sized, your call.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📖</div>
+        <h3 data-l="ja">見開き表示</h3>
+        <h3 data-l="en">Two-page spreads</h3>
+        <p data-l="ja">漫画は見開きで。写真にも見開き表示を拡張。読み方向は作品ごとに切り替えできます。</p>
+        <p data-l="en">Comics the way they were drawn. Spread view works for photos too, with per-title reading direction.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔒</div>
+        <h3 data-l="ja">プライバシーは、機能です</h3>
+        <h3 data-l="en">Privacy is a feature</h3>
+        <p data-l="ja">データ収集ゼロ。解析SDKなし。アカウント不要。あなたが何を読むかは、あなただけのものです。</p>
+        <p data-l="en">Zero data collection. No analytics SDKs. No account. What you read is nobody's business but yours.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="card">
-    <h2>サポート / Support</h2>
-    <p>メール / Email: <a href="mailto:peekrvr.app@gmail.com">peekrvr.app@gmail.com</a><br>
-    X (Twitter): <a href="https://x.com/PeekrVR">@PeekrVR</a></p>
-  </div>
+  <!-- スクリーンショット -->
+  <section>
+    <h2 class="secTitle" data-l="ja">スクリーンショット</h2>
+    <h2 class="secTitle" data-l="en">Screenshots</h2>
+    <div class="shots">
+      <figure><img src="./assets/01_manga_spread_color.jpg" alt="Manga spread view (color)" loading="lazy">
+        <figcaption data-l="ja">見開きでカラー漫画を大画面表示</figcaption>
+        <figcaption data-l="en">Color manga in spread view, big-screen</figcaption></figure>
+      <figure><img src="./assets/02_manga_spread_bw.jpg" alt="Manga spread view (B&W)" loading="lazy">
+        <figcaption data-l="ja">モノクロ原稿も細部までくっきり</figcaption>
+        <figcaption data-l="en">B&amp;W pages stay crisp down to the detail</figcaption></figure>
+      <figure><img src="./assets/03_formats_cbz_7z_tar.jpg" alt="Archive formats" loading="lazy">
+        <figcaption data-l="ja">CBZ・7z・TAR…圧縮のまま本棚に</figcaption>
+        <figcaption data-l="en">CBZ, 7z, TAR… archives become your bookshelf</figcaption></figure>
+      <figure><img src="./assets/04_photo_grid.jpg" alt="Photo grid" loading="lazy">
+        <figcaption data-l="ja">写真はグリッドで一覧</figcaption>
+        <figcaption data-l="en">Photos in a browsable grid</figcaption></figure>
+      <figure><img src="./assets/05_photo_fullscreen.jpg" alt="Photo fullscreen" loading="lazy">
+        <figcaption data-l="ja">写真も大画面・高精細で</figcaption>
+        <figcaption data-l="en">Photos, big and sharp</figcaption></figure>
+      <figure><img src="./assets/06_komga.jpg" alt="Komga integration" loading="lazy">
+        <figcaption data-l="ja">Komgaライブラリにそのままアクセス</figcaption>
+        <figcaption data-l="en">Your Komga library, right inside VR</figcaption></figure>
+    </div>
+  </section>
 
-  <footer>&copy; 2026 Peekr</footer>
-</main>
+  <!-- What's New -->
+  <section>
+    <div class="news">
+      <h3 data-l="ja">新着 v1.2.0 — Komga 連携</h3>
+      <h3 data-l="en">What's New in v1.2.0 — Komga integration</h3>
+      <p data-l="ja">自宅のNASに置いた <strong>Komga</strong> サーバーのマンガを、VRでそのまま閲覧できるようになりました。シリーズ検索（日本語入力に対応）、続きから読む（読書進捗をサーバーと同期）、お気に入り・ショートカット登録、シリーズごとの読み方向（右開き／左開き）の自動反映に対応。LAN上の Komga を自動検出し、設定済みなら起動後すぐライブラリへ。</p>
+      <p data-l="en">Read manga from your self-hosted <strong>Komga</strong> server right inside VR. Series search (with Japanese/IME input), continue reading (progress synced to the server), Favorites &amp; Shortcuts, and each series' reading direction (RTL/LTR) applied automatically. Auto-discovers Komga on your LAN and jumps straight to your library.</p>
+    </div>
+  </section>
+
+  <!-- スペック -->
+  <section>
+    <h2 class="secTitle" data-l="ja">仕様</h2>
+    <h2 class="secTitle" data-l="en">Specs</h2>
+    <table class="spec">
+      <tr>
+        <th data-l="ja">対応フォーマット</th><th data-l="en">Formats</th>
+        <td>ZIP / CBZ / RAR / CBR / 7z / TAR + JPEG / PNG ほか / and more</td>
+      </tr>
+      <tr>
+        <th data-l="ja">接続</th><th data-l="en">Sources</th>
+        <td data-l="ja">本体ストレージ／NAS（SMB）／Komga サーバー</td>
+        <td data-l="en">Local storage / NAS (SMB) / Komga server</td>
+      </tr>
+      <tr>
+        <th data-l="ja">UI言語</th><th data-l="en">UI languages</th>
+        <td data-l="ja">日本語・英語・簡体字中国語・繁体字中国語・韓国語・スペイン語（6言語）</td>
+        <td data-l="en">English, Japanese, Simplified &amp; Traditional Chinese, Korean, Spanish (6 languages)</td>
+      </tr>
+      <tr>
+        <th data-l="ja">データ収集</th><th data-l="en">Data collection</th>
+        <td data-l="ja">ゼロ（<a href="./privacy.html">プライバシーポリシー</a>）</td>
+        <td data-l="en">None (<a href="./privacy.html">privacy policy</a>)</td>
+      </tr>
+      <tr>
+        <th data-l="ja">コンテンツ</th><th data-l="en">Content</th>
+        <td data-l="ja">本アプリにコンテンツは含まれません。お手持ちのファイルを表示するビューワーです。</td>
+        <td data-l="en">No content is included. Peekr VR is a viewer for files you already own.</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 最後のCTA -->
+  <section>
+    <div class="lastcta">
+      <p class="catch" data-l="ja">あなたの蔵書に、いちばん静かな特等席を。</p>
+      <p class="catch" data-l="en">Give your collection the best seat in the house.</p>
+      <div class="cta">
+        <a class="store" data-l="ja" href="https://www.meta.com/ja-jp/experiences/peekr-vr/1157359374130212/">Meta Horizon Store で入手 — ¥1,980</a>
+        <a class="store" data-l="en" href="https://www.meta.com/en-us/experiences/peekr-vr/1157359374130212/">Get it on the Horizon Store — $14.99</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <nav>
+      <a href="./press.html" data-l="ja">プレス／レビューキット</a>
+      <a href="./press.html" data-l="en">Press / Review Kit</a>
+      <a href="./privacy.html" data-l="ja">プライバシーポリシー</a>
+      <a href="./privacy.html" data-l="en">Privacy Policy</a>
+      <a href="mailto:peekrvr.app@gmail.com" data-l="ja">サポート</a>
+      <a href="mailto:peekrvr.app@gmail.com" data-l="en">Support</a>
+      <a href="https://x.com/PeekrVR">X (Twitter)</a>
+    </nav>
+    &copy; 2026 Peekr
+  </footer>
+</div>
+
+<script>
+  function setLang(l){
+    document.documentElement.classList.remove('ja','en');
+    document.documentElement.classList.add(l);
+    document.documentElement.lang = l;
+    document.getElementById('btnJa').classList.toggle('on', l==='ja');
+    document.getElementById('btnEn').classList.toggle('on', l==='en');
+    try{ localStorage.setItem('peekr_lang', l); }catch(e){}
+  }
+  (function(){
+    var q = new URLSearchParams(location.search).get('lang');
+    var saved = null; try{ saved = localStorage.getItem('peekr_lang'); }catch(e){}
+    var l = q || saved || ((navigator.language||'').toLowerCase().startsWith('ja') ? 'ja' : 'en');
+    setLang(l==='ja' ? 'ja' : 'en');
+  })();
+</script>
 </body>
 </html>
