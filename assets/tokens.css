@@ -1,0 +1,52 @@
+/* Hallmark · genre: atmospheric · theme: custom (brand sky #9ED6FA) · design-system: design.md
+ * vibe: "dark room, curved panel, horizon, yellow laser" · axes: dark / classical-serif (mincho) / cool
+ */
+@font-face {
+  font-family: "Shippori Mincho B1";
+  src: url("./fonts/shippori-b1-800-sub.woff2") format("woff2");
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/jetbrainsmono-sub.woff2") format("woff2");
+  font-weight: 400 700; font-style: normal; font-display: swap;
+}
+:root {
+  color-scheme: dark;
+  --color-void:       oklch(18.5% 0.035 252);
+  --color-paper-2:    oklch(22.5% 0.04 252);
+  --color-paper-3:    oklch(27% 0.045 252);
+  --color-rule:       oklch(36% 0.04 252);
+  --color-ink:        oklch(95% 0.012 240);
+  --color-ink-2:      oklch(80% 0.03 240);
+  --color-accent:     oklch(85.5% 0.085 230);
+  --color-accent-hi:  oklch(91% 0.06 230);
+  --color-accent-ink: oklch(19% 0.045 252);
+  --color-laser:      oklch(89% 0.17 100);
+  --color-horizon:    oklch(40% 0.12 12);
+  --color-horizon-0:  oklch(40% 0.12 12 / 0);
+  --color-void-0:     oklch(18.5% 0.035 252 / 0);
+  --color-shade:      oklch(10% 0.03 252 / 0.55);
+
+  --font-display: "Shippori Mincho B1", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+
+  --space-3xs: 0.25rem; --space-2xs: 0.5rem; --space-xs: 0.75rem;
+  --space-sm: 1rem; --space-md: 1.5rem; --space-lg: 2rem;
+  --space-xl: 3rem; --space-2xl: 4.5rem; --space-3xl: 7rem; --space-4xl: 10rem;
+  --gutter: clamp(1rem, 4vw, 4rem);
+
+  --text-xs: 0.8125rem; --text-sm: 0.9rem; --text-md: 1rem; --text-lg: 1.2rem;
+  --text-xl: clamp(1.4rem, 1rem + 1.4vw, 1.9rem);
+  --text-2xl: clamp(1.75rem, 1.1rem + 2.6vw, 3rem);
+  --text-display: clamp(1.95rem, 0.9rem + 4.6vw, 4.9rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --dur-micro: 120ms; --dur-short: 220ms; --dur-long: 420ms;
+
+  --radius-panel: 10px; --radius-pill: 999px;
+  --rule-hair: 1px;
+  --z-base: 1; --z-nav: 10;
+}

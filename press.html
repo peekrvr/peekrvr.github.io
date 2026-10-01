@@ -2,58 +2,51 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Peekr VR — Press / Review Kit</title>
 <meta name="description" content="Peekr VR press & review kit — facts, features, assets, and free review codes for Meta Quest 3.">
-<style>
-  :root { --accent:#9ED6FA; --bg:#0d1b2a; --panel:#13243a; --text:#e8eef4; --muted:#9fb3c8; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); line-height:1.8;
-         font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", Meiryo, sans-serif; }
-  main { max-width:760px; margin:0 auto; padding:64px 24px; }
-  h1 { color:var(--accent); font-size:2.1rem; margin:0 0 8px; letter-spacing:.02em; }
-  .tagline { color:var(--muted); margin:0 0 32px; }
-  a { color:var(--accent); }
-  .card { background:var(--panel); border-radius:12px; padding:20px 24px; margin:16px 0; }
-  .card h2 { font-size:1rem; margin:0 0 10px; color:var(--accent); }
-  .card p, .card li { color:var(--muted); font-size:.95rem; }
-  .card ul { margin:6px 0 0; padding-left:1.2em; }
-  .btns { display:flex; flex-wrap:wrap; gap:12px; margin:8px 0 0; }
-  .btn { display:inline-block; background:var(--accent); color:#0d1b2a; text-decoration:none;
-         font-weight:700; padding:10px 18px; border-radius:8px; font-size:.95rem; }
-  table { width:100%; border-collapse:collapse; font-size:.95rem; }
-  th, td { text-align:left; padding:6px 8px; vertical-align:top; border-bottom:1px solid #24364f; color:var(--muted); }
-  th { color:var(--text); white-space:nowrap; width:34%; }
-  .lead { color:var(--text); }
-  footer { color:var(--muted); font-size:.85rem; margin-top:48px; }
-  .back { font-size:.85rem; }
-</style>
+<meta name="theme-color" content="#0b1424">
+<link rel="icon" href="./assets/logo_68.png">
+<link rel="preload" href="./assets/fonts/shippori-b1-800-sub.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./assets/tokens.css">
+<link rel="stylesheet" href="./assets/site.css">
 </head>
-<body>
-<main>
-  <p class="back"><a href="./index.html">&larr; Peekr VR</a></p>
-  <h1>Peekr VR — Press / Review Kit</h1>
-  <p class="tagline">解凍せず開く、自分の蔵書のためのVRビューワー。<br>
-  A VR viewer for the comics, photos &amp; videos you own — no extraction, straight from your NAS.</p>
+<body class="presskit">
 
-  <div class="card">
+<header class="nav">
+  <a class="wordmark" href="./index.html"><img src="./assets/logo_68.png" alt="" width="34" height="34">Peekr VR</a>
+  <a class="btn btn--ghost nav__store" href="mailto:peekrvr.app@gmail.com">peekrvr.app@gmail.com</a>
+</header>
+
+<main class="doc press">
+  <div class="press-head">
+    <h1>Peekr VR — Press / Review Kit</h1>
+    <p class="tagline">解凍せず開く、自分の蔵書のためのVRビューワー。<br>
+    <span lang="en">A VR viewer for the comics, photos &amp; videos you own — no extraction, straight from your NAS.</span></p>
+  </div>
+
+  <figure class="press-visual">
+    <picture><source srcset="./assets/trailer_poster.webp" type="image/webp"><img src="./assets/trailer_poster.jpg" width="1280" height="720" alt="Peekr VR key visual — the file browser floating in VR"></picture>
+  </figure>
+
+  <section class="kit-sec">
     <h2>ストア / Store</h2>
     <p class="lead">Meta Horizon Store にて配信中 / Now live on the Meta Horizon Store.</p>
     <div class="btns">
       <a class="btn" href="https://www.meta.com/ja-jp/experiences/peekr-vr/1157359374130212/">日本語ストア</a>
       <a class="btn" href="https://www.meta.com/en-us/experiences/peekr-vr/1157359374130212/">Store (English)</a>
     </div>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="kit-sec kit-sec--codes">
     <h2>レビュー用 無料コード / Free review codes</h2>
     <p>レビューをご検討いただける方には、無料のレビューコード（プロダクトキー）をお渡しします。忖度は不要、率直なご感想で結構です。下記までお気軽にご連絡ください。</p>
-    <p>Happy to send a free review code (product key) to anyone considering a review — an honest, no-strings take is exactly what we're hoping for. Just reach out below.</p>
-  </div>
+    <p lang="en">Happy to send a free review code (product key) to anyone considering a review — an honest, no-strings take is exactly what we're hoping for. Just reach out below.</p>
+  </section>
 
-  <div class="card">
+  <section class="kit-sec">
     <h2>ファクトシート / Fact sheet</h2>
-    <table>
+    <table class="facts-tbl">
       <tr><th>開発者 / Developer</th><td>Peekr（個人開発 / solo developer）</td></tr>
       <tr><th>プラットフォーム / Platform</th><td>Meta Quest 3 (Meta Horizon Store)</td></tr>
       <tr><th>ジャンル / Genre</th><td>メディアビューワー（漫画・写真・動画）/ Media viewer (comics, photos, videos)</td></tr>
@@ -62,36 +55,36 @@
       <tr><th>配信日 / Release</th><td>2026-06-17</td></tr>
       <tr><th>対応言語 / Languages</th><td>日本語・English ほか（ストア6言語）</td></tr>
     </table>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="kit-sec">
     <h2>特長 / Highlights</h2>
-    <ul>
-      <li>📦 ZIP / CBZ / RAR / CBR / 7z / TAR を<strong>解凍せず</strong>そのまま開いて読める / Opens archives with no extraction</li>
-      <li>🗄 <strong>NAS(SMB)直結</strong>。転送やコピー不要、置いたまま読める / Connects straight to your NAS over SMB</li>
-      <li>📚 <strong>Komgaサーバー連携</strong>。検索（日本語入力対応）・続きから・お気に入り・読み方向自動・6言語UI / Komga server integration — search (Japanese/IME), continue reading, favorites, auto reading-direction, 6-language UI</li>
-      <li>🔍 <strong>ズーム無制限</strong>・見開き表示 / Unlimited zoom, two-page spreads</li>
-      <li>🖼 漫画・写真・動画に対応した汎用ビューワー / One viewer for comics, photos and videos</li>
-      <li>🔒 <strong>データ収集ゼロ</strong>。解析SDKなし・全ファイルアクセス権限を使わない / No data collection, no analytics SDK, no "All Files" permission</li>
+    <ul class="hl">
+      <li>ZIP / CBZ / RAR / CBR / 7z / TAR を<strong>解凍せず</strong>そのまま開いて読める / Opens archives with no extraction</li>
+      <li><strong>NAS(SMB)直結</strong>。転送やコピー不要、置いたまま読める / Connects straight to your NAS over SMB</li>
+      <li><strong>Komgaサーバー連携</strong>。検索（日本語入力対応）・続きから・お気に入り・読み方向自動・6言語UI / Komga server integration — search (Japanese/IME), continue reading, favorites, auto reading-direction, 6-language UI</li>
+      <li><strong>ズーム無制限</strong>・見開き表示 / Unlimited zoom, two-page spreads</li>
+      <li>漫画・写真・動画に対応した汎用ビューワー / One viewer for comics, photos and videos</li>
+      <li><strong>データ収集ゼロ</strong>。解析SDKなし・全ファイルアクセス権限を使わない / No data collection, no analytics SDK, no "All Files" permission</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="kit-sec">
     <h2>素材 / Assets</h2>
     <p>トレーラー・スクリーンショット・ロゴ一式をご用意しています。メールでお送りしますので、お気軽にお申し付けください。/ Trailer, screenshots and logo are available — just email and we'll send the full kit.</p>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="kit-sec">
     <h2>クレジット表記 / Credits</h2>
     <p>スクリーンショット内の漫画作例：「ブラックジャックによろしく」佐藤秀峰（二次利用フリー作品）/ Manga shown in screenshots: "Black Jack ni Yoroshiku" by Shuho Sato (free-to-reuse).</p>
-  </div>
+  </section>
 
-  <div class="card">
+  <section class="kit-sec">
     <h2>連絡先 / Contact</h2>
     <p>Email: <a href="mailto:peekrvr.app@gmail.com">peekrvr.app@gmail.com</a><br>
     X (Twitter): <a href="https://x.com/PeekrVR">@PeekrVR</a><br>
     Web: <a href="https://peekrvr.github.io/">peekrvr.github.io</a></p>
-  </div>
+  </section>
 
   <footer>&copy; 2026 Peekr</footer>
 </main>
